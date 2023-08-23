@@ -25,5 +25,18 @@ private:
     LazySingleton(const Singleton &) = delete;
     LazySingleton &operator=(const LazySingleton &) = delete;
 
-    std::mutex mtx;
+    static std::mutex mtx;
+};
+
+
+class LazySingleton_up
+{
+public:
+    static LazySingleton_up *GetInstance();
+private:
+    LazySingleton_up(){};
+    LazySingleton_up(const LazySingleton_up &) = delete;
+    LazySingleton_up &operator=(const LazySingleton_up &) = delete;
+
+    static std::mutex mtx;
 };
