@@ -1,4 +1,5 @@
 #include <iostream>
+#include <mutex>
 
 // 饿汉模式
 class Singleton
@@ -19,8 +20,10 @@ public:
     static LazySingleton *GetInstance();
 
 private:
-    static LazySingleton *instance;
+    static LazySingleton *volatile instance;
     LazySingleton(){};
     LazySingleton(const Singleton &) = delete;
     LazySingleton &operator=(const LazySingleton &) = delete;
+
+    std::mutex mtx;
 };

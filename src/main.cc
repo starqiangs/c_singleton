@@ -3,7 +3,7 @@
 #include "Singleton.h"
 
 Singleton Singleton::instance;
-LazySingleton *LazySingleton::instance = nullptr;
+LazySingleton *volatile LazySingleton::instance = nullptr;
 
 int main()
 {

@@ -9,7 +9,11 @@ LazySingleton *LazySingleton::GetInstance()
 {
     if (instance == nullptr)
     {
-        instance = new LazySingleton();
+        std::lock_guard<std::mutex> lock_guard(instance->mtx);
+        if (instance == nullptr)
+        {
+            instance = new LazySingleton();
+        }
     }
     return instance;
 }
